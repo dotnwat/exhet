@@ -1,0 +1,257 @@
+% This is "sig-alternate.tex" V2.1 April 2013
+% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
+%
+% This example file demonstrates the use of the 'sig-alternate.cls'
+% V2.5 LaTeX2e document class file. It is for those submitting
+% articles to ACM Conference Proceedings WHO DO NOT WISH TO
+% STRICTLY ADHERE TO THE SIGS (PUBS-BOARD-ENDORSED) STYLE.
+% The 'sig-alternate.cls' file will produce a similar-looking,
+% albeit, 'tighter' paper resulting in, invariably, fewer pages.
+%
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V2.5) produces:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) NO page numbers
+%
+% as against the acm_proc_article-sp.cls file which
+% DOES NOT produce 1) thru' 3) above.
+%
+% Using 'sig-alternate.cls' you have control, however, from within
+% the source .tex file, over both the CopyrightYear
+% (defaulted to 200X) and the ACM Copyright Data
+% (defaulted to X-XXXXX-XX-X/XX/XX).
+% e.g.
+% \CopyrightYear{2007} will cause 2007 to appear in the copyright line.
+% \crdata{0-12345-67-8/90/12} will cause 0-12345-67-8/90/12 to appear in the copyright line.
+%
+% ---------------------------------------------------------------------------------------------------------------
+% This .tex source is an example which *does* use
+% the .bib file (from which the .bbl file % is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission, you *NEED* to 'insert'
+% your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% ================= IF YOU HAVE QUESTIONS =======================
+% Questions regarding the SIGS styles, SIGS policies and
+% procedures, Conferences etc. should be sent to
+% Adrienne Griscti (griscti@acm.org)
+%
+% Technical questions _only_ to
+% Gerald Murray (murray@hq.acm.org)
+% ===============================================================
+%
+% For tracking purposes - this is V2.0 - May 2012
+
+\documentclass{sig-alternate-05-2015}
+
+
+\begin{document}
+
+% Copyright
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+\toappear{}
+% DOI
+%\doi{10.475/123_4}
+
+% ISBN
+%\isbn{123-4567-24-567/08/06}
+
+%Conference
+%\conferenceinfo{PLDI '13}{June 16--19, 2013, Seattle, WA, USA}
+
+%\acmPrice{\$15.00}
+
+%
+% --- Author Metadata here ---
+%\conferenceinfo{WOODSTOCK}{'97 El Paso, Texas USA}
+%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
+%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
+% --- End of Author Metadata ---
+
+\title{Alternate {\ttlit ACM} SIG Proceedings Paper in LaTeX Format}
+%
+% You need the command \numberofauthors to handle the 'placement
+% and alignment' of the authors beneath the title.
+%
+% For aesthetic reasons, we recommend 'three authors at a time'
+% i.e. three 'name/affiliation blocks' be placed beneath the title.
+%
+% NOTE: You are NOT restricted in how many 'rows' of
+% "name/affiliations" may appear. We just ask that you restrict
+% the number of 'columns' to three.
+%
+% Because of the available 'opening page real-estate'
+% we ask you to refrain from putting more than six authors
+% (two rows with three columns) beneath the article title.
+% More than six makes the first-page appear very cluttered indeed.
+%
+% Use the \alignauthor commands to handle the names
+% and affiliations for an 'aesthetic maximum' of six authors.
+% Add names, affiliations, addresses for
+% the seventh etc. author(s) as the argument for the
+% \additionalauthors command.
+% These 'additional authors' will be output/set for you
+% without further effort on your part as the last section in
+% the body of your article BEFORE References or any Appendices.
+
+\numberofauthors{1} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Noah Watkins, Michael Sevilla, Jeff LeFevre, Carlos Maltzahn
+}
+
+% There's nothing stopping you putting the seventh, eighth, etc.
+% author on the opening page (as the 'third row') but we ask,
+% for aesthetic reasons that you place these 'additional authors'
+% in the \additional authors block, viz.
+
+\date{30 July 1999}
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
+
+\maketitle
+
+\section{Key challenges}
+
+Future extreme heterogeneous systems will be managed by runtimes that handle the
+complexities of abstracting across systems with diverse sets of compute
+elements, deep memory hierarchies, and asymmetrical networks.  The increased
+role of runtimes in resource and execution management is a direct result of the
+complexity involved in designing applications that are able to portably extract
+performance from complex architectures.  Often the target of domain-specific
+languages, such runtimes exploit application-specific semantics and use the
+state of the current system (e.g., hardware, software, configuration, etc.) to
+optimize all aspects of distributed execution. Runtimes such as Legion [CITE]
+expect to manage the entire compute infrastructure, but real-world constraints
+require access to mass storage to be shared since it is used across applications
+within organizations to relieve memory pressure, archive results, and provide
+critical fault-tolerant capabilities. As a result, it is unlikely that in the
+near-term the entire storage system hierarchy will be managed by a single
+application runtime. Thus, the ability of application runtimes to optimize
+execution is partly limited by the capabilities of I/O interfaces.
+
+\begin{quote}
+  \emph{Challenge}. Current storage architectures are not designed for extreme
+  heterogeneity, especially in the context of persistent memories whose
+  performance is limited code path length and shared-memory designs.
+\end{quote}
+
+Current I/O interfaces are treated like black boxes by runtime systems, limited
+in use to basic read-write APIs (e.g., POSIX file I/O or middleware such as
+HDF5). However, such interfaces are primarily designed for consumption by human
+developers, rather than runtime systems.  In order to realize end-to-end
+optimizations, I/O interfaces must be enhanced to expose storage capabilities
+such as fine-grained control over data durability, horizontal and vertical data
+locality, and semantics that affect locking and serialization. Runtime systems
+may take advantage of these capabitilies in diverse, application-specific ways.
+But as a shared resource, storage systems cannot expose exclusive control to an
+application runtime. In fact, important optimizations in storage systems depend
+on managing access by understanding behavior across application boundaries.
+
+\begin{quote}
+  \emph{Challenge}. The design of adaptive storage I/O interfaces that safely
+  provide two-way communication of with application runtimes the nature of
+  workflows, hardware, data, and access semantics. Highly dynamic interfaces to shared resources
+  present many optimization opporunities, but introduce difficult challenges for
+  managing access.
+\end{quote}
+
+\section{Research directions}
+
+\subsection{Interface design}
+
+Current I/O interfaces are in large part treated as black boxes that offer
+limited control in the form of \emph{magic numbers} or coarse-grain hints. With
+few exceptions such as I/O sequentiality and alignment parameters, existing
+interfaces allow applications to express intent or expose low-level system state
+or configurability. In order to realize end-to-end application I/O optmizations,
+both application runtime and storage system will need to be co-designed such that runtime
+adapation of behavior based on data structure is possible.
+
+For instance, HPC applications that use pattern-based data models and want to
+optimize for checkpoint latency should be able to reliqunish control over low-level
+data placement to the storage system, and in turn be able to adapatively provide
+subsets of checkpoint data based on the current state of the storage system.
+
+Historically the primary I/O interfaces have been object, block, and POSIX file
+I/O. However, the availability of high-performance open-source storage systems
+are allowing exploration of new storage interfaces without the fear of vendor
+lock-in.  Recent work has explored the adaptability of existing storage systems
+to support a range of new I/O interfaces, but an open question is how such
+interfaces can efficently and reliability be constructed. Integrate KV-Drive and
+LDFI into discussion.
+
+\subsection{System architecture}
+
+Both HPC and cloud-based systems are seeing rapid advancements towards
+heterogeneity. For instance, Amazon Web Services offers a large array of node
+and network capabilities including FPGA and GPU co-processors. Emerging storage
+technologies such as NVMe and persistent memories are offered by cloud providers
+and will be integrated in future HPC systems, but even existing storage systems
+are struggling to exploit their full performance [NOVA]. In fact, the increased
+performance of next-generation media and networks suggests that future systems
+may require a CPU per storage device [Slide Ref]. And in order to support a
+dynamic range of interfaces, internal sub-systems will need to be generic and
+re-usable to support the diverse of demands of runtime systems.
+
+Achieving end-to-end performance optimization will require new techniques for
+verticaly integrating across application, runtime, and storage systems. The
+architectural challenges of achieving low-latency I/O for persistent memories
+requirements are significant. These media benefit from shared-nothing designs
+that minimize context switches and \emph{cycles}, thus one-size-fits-all code
+paths will be replaced by many specialized paths, potentially constructed
+dynamically, that each must still support correct consistency semantics across
+interfaces.
+
+The incredible advancement of container and virtualization technologies,
+dependence on domain-specific languages, and reliance on open-source software
+for critical support libraries, are increasing the demand for polyglot
+deployments. However, technologies for cross-language communication offer
+notoriously poor performance (e.g. JNI) and will introduce unacceptable
+overheads for systems with next-generation memories. New runtime systems that
+rely on advanced JIT technologies are successfully being used to dynamically
+perform end-to-end code path optimization across language boundaries (Graal,
+Truffle, SQLiteJIT).
+
+\subsection{Operational policies}
+
+The data-intensive nature of both cloud and HPC applications will put extreme
+pressure on shared storage systems. Even in the most constrained cases today,
+efficently sharing systems is a significant challenge. Handling access to a
+shared storage systems supporting a wide range of dynamic interfaces, code
+paths, and new architectures that favor less shared state will require
+rethinking how resource management is handled.
+
+%
+% The following two commands are all you need in the
+% initial runs of your .tex file to
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{abbrv}
+\bibliography{sigproc}  % sigproc.bib is the name of the Bibliography in this case
+
+\end{document}
