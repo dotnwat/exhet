@@ -210,8 +210,8 @@ research directions.
 Current I/O interfaces are in large part treated as black boxes that offer
 limited control in the form of \emph{magic numbers} or coarse-grain hints. With
 few exceptions such as I/O sequentiality and alignment parameters, existing
-interfaces allow applications to express intent or expose low-level system state
-or configurability. In order to realize end-to-end application I/O optmizations,
+interfaces do not allow applications to express intent or expose low-level system state
+or configurability. In order to realize {\it end-to-end} application I/O optmizations,
 both application runtime and storage system will need to be co-designed such that runtime
 adapation of behavior based on data structure is possible.
 
@@ -232,14 +232,16 @@ LDFI into discussion.
 
 Both HPC and cloud-based systems are seeing rapid advancements towards
 heterogeneity. For instance, Amazon Web Services offers a large array of node
-and network capabilities including FPGA and GPU co-processors. Emerging storage
-technologies such as NVMe and persistent memories are offered by cloud providers
-and will be integrated in future HPC systems, but even existing storage systems
-are struggling to exploit their full performance~\cite{xu:fast16-nova}. In fact, the increased
-performance of next-generation media and networks suggests that future systems
-may require a CPU per storage device~\cite{samuels:oss16}. And in order to support a
-dynamic range of interfaces, internal sub-systems will need to be generic and
-re-usable to support the diverse of demands of runtime systems.
+and network capabilities including FPGA and GPU co-processors. Moreover, AWS
+offers an HPC service for users to compose their own HPC systems Emerging
+storage technologies such as NVMe and persistent memories are offered by cloud
+providers and will be integrated in future HPC systems, but even existing
+storage systems are struggling to exploit their full
+performance~\cite{xu:fast16-nova}. In fact, the increased performance of
+next-generation media and networks suggests that future systems may require a
+CPU per storage device~\cite{samuels:oss16}. And in order to support a dynamic
+range of interfaces, internal sub-systems will need to be generic and re-usable
+to support the diverse of demands of runtime systems.
 
 Achieving end-to-end performance optimization will require new techniques for
 verticaly integrating across application, runtime, and storage systems. The
@@ -269,12 +271,15 @@ shared storage systems supporting a wide range of dynamic interfaces, code
 paths, and new architectures that favor less shared state will require
 rethinking how resource management is handled.
 
-Increased interactions of the new interfaces and system architectures discussed
-above further complicate the duties of the storage system. As developers start
-to push application-specific optimizations into the storage system, the storage
-system must continue to provide the semantics and guarantees that users have
-come to expect. Code-hardened subsystems that use QoS, scheduling, and load
-balancing must now account for this new dimension. This problem is especially
+While not part of our explicit challenges outlined above, operational policies
+become required as a consequence of the research directions we propose to
+address our key challenges.  Increased interactions of the new interfaces and
+system architectures further complicate the duties of the storage system. As
+developers start to push application-specific optimizations into the storage
+system, the storage system must continue to provide the semantics and
+guarantees that users have come to expect. Code-hardened subsystems that use
+QoS, admission control, management for failures/misbehaving devices, and load
+balancing must now account for this new dimension.  This problem is especially
 relevant for data-intensive HPC applications that need these internal
 optimizations, such as scheduling and locality, to retrieve data from and store
 data on heterogeneous hardware.
