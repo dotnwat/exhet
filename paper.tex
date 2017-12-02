@@ -146,7 +146,7 @@ complexity involved in designing applications that are able to portably extract
 performance from complex architectures.  Often the target of domain-specific
 languages, such runtimes exploit application-specific semantics and use the
 state of the current system (e.g., hardware, software, configuration, etc.) to
-optimize all aspects of distributed execution. Runtimes such as Legion [CITE]
+optimize all aspects of distributed execution. Runtimes such as Legion~\cite{bauer:sc12-legion}
 expect to manage the entire compute infrastructure, but real-world constraints
 require access to mass storage to be shared since it is used across applications
 within organizations to relieve memory pressure, archive results, and provide
@@ -213,9 +213,9 @@ heterogeneity. For instance, Amazon Web Services offers a large array of node
 and network capabilities including FPGA and GPU co-processors. Emerging storage
 technologies such as NVMe and persistent memories are offered by cloud providers
 and will be integrated in future HPC systems, but even existing storage systems
-are struggling to exploit their full performance [NOVA]. In fact, the increased
+are struggling to exploit their full performance~\cite{xu:fast16-nova}. In fact, the increased
 performance of next-generation media and networks suggests that future systems
-may require a CPU per storage device [Slide Ref]. And in order to support a
+may require a CPU per storage device~\cite{samuels:oss16}. And in order to support a
 dynamic range of interfaces, internal sub-systems will need to be generic and
 re-usable to support the diverse of demands of runtime systems.
 
