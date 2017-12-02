@@ -186,6 +186,25 @@ on managing access by understanding behavior across application boundaries.
 
 \section{Research directions}
 
+The motivation for new storage interfaces is seeded in two widespread reactions
+to heterogeneity: (1) developers are using non-standard interfaces, and (2)
+developers spend a long time designing optimizations and system tunables.  For
+(1), developers are already circumventing narrow interfaces to the storage
+system using non-standard APIs to get the optimizations they
+need~\cite{sevilla:es17-malac}.  Using these interfaces, application developers
+push domain- and architecture-specific knowledge to the storage system, such as
+how to logically access data stored on disk or which device type to store data
+on, respectively.  This type of developer behavior is a direct response to
+extreme heterogeneity.  For (2), developers are overwhelmed with the rapid
+development and change associated with open-source storage
+systems~\cite{watkins:hot17-declstor}. With so many active contributors,
+software versions progress quickly and application optimizations that worked
+for one version may not work for another; different hardware and configurations
+make this permutation space practically impossible to reason about.
+
+In light of new storage interfaces, we advocate the pursuit of the following
+research directions.
+
 \subsection{Interface design}
 
 Current I/O interfaces are in large part treated as black boxes that offer
