@@ -247,6 +247,24 @@ shared storage systems supporting a wide range of dynamic interfaces, code
 paths, and new architectures that favor less shared state will require
 rethinking how resource management is handled.
 
+Increased interactions of the new interfaces and system architectures discussed
+above further complicate the duties of the storage system. As developers start
+to push application-specific optimizations into the storage system, the storage
+system must continue to provide the semantics and guarantees that users have
+come to expect. Code-hardened subsystems that use QoS, scheduling, and load
+balancing must now account for this new dimension. This problem is especially
+relevant for data-intensive HPC applications that need these internal
+optimizations, such as scheduling and locality, to retrieve data from and store
+data on heterogeneous hardware.
+
+As with the other research directions, operational policies reach beyond just
+HPC. Providing performance guarantees for all resources, not just storage, is
+important for *aaS architectures that are shared among users, so lessons can be
+gleaned from cloud research about isolation and scheduling, such as Mesos and
+Kubernetes. Furthermore, the cloud community has done a good job addressing
+heterogeneity when using these techniques behind user-facing APIs without
+jeopardizing the semantics.
+
 %
 % The following two commands are all you need in the
 % initial runs of your .tex file to
