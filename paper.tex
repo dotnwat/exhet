@@ -132,7 +132,7 @@ Noah Watkins, Michael A. Sevilla, Jeff LeFevre, Carlos Maltzahn \\
 % for aesthetic reasons that you place these 'additional authors'
 % in the \additional authors block, viz.
 
-\date{30 July 1999}
+\date{\today}
 % Just remember to make sure that the TOTAL number of authors
 % is the number that will appear on the first page PLUS the
 % number that will appear in the \additionalauthors section.
@@ -141,27 +141,29 @@ Noah Watkins, Michael A. Sevilla, Jeff LeFevre, Carlos Maltzahn \\
 
 \section{Key challenges}
 
-Future extreme heterogeneous systems will be managed by runtimes that handle the
+Future extreme heterogeneous systems will need to be managed by runtimes that handle the
 complexities of abstracting across systems with diverse sets of compute
 elements, deep memory hierarchies, and asymmetrical networks.  The increased
 role of runtimes in resource and execution management is a direct result of the
-complexity involved in designing applications that are able to portably extract
+complexity involved in designing portable applications that are able to extract
 performance from complex architectures.  Often the target of domain-specific
 languages, such runtimes exploit application-specific semantics and use the
 state of the current system (e.g., hardware, software, configuration, etc.) to
 optimize all aspects of distributed execution. Runtimes such as Legion~\cite{bauer:sc12-legion}
 expect to manage the entire compute infrastructure, but real-world constraints
 require access to mass storage to be shared since it is used across applications
-within organizations to relieve memory pressure, archive results, and provide
+and organizations to relieve memory pressure, archive results, and provide
 critical fault-tolerant capabilities. As a result, it is unlikely that in the
 near-term the entire storage system hierarchy will be managed by a single
 application runtime. Thus, the ability of application runtimes to optimize
-execution is partly limited by the capabilities of I/O interfaces.
+execution is partly limited by the capabilities of I/O interfaces and the
+opportunities by which the storage system can provide cross-application optimizations.
 
 \begin{quote}
-  \emph{Challenge}. Current storage architectures are not designed for extreme
-  heterogeneity, especially in the context of persistent memories whose
-  performance is limited code path length and shared-memory designs.
+	\emph{Challenge}. Current storage architectures are not designed for extreme
+heterogeneity, in terms of both hardware as well as users, especially
+in the context of persistent memories whose performance is limited by code path
+length and shared-memory designs.
 \end{quote}
 
 Current I/O interfaces are treated like black boxes by runtime systems, limited
@@ -171,18 +173,22 @@ developers, rather than runtime systems.  In order to realize end-to-end
 optimizations, I/O interfaces must be enhanced to expose storage capabilities
 such as fine-grained control over data durability, horizontal and vertical data
 locality, and semantics that affect locking and serialization. Runtime systems
-may take advantage of these capabitilies in diverse, application-specific ways.
+must be able to take advantage of these capabilities in diverse, application-specific ways.
 But as a shared resource, storage systems cannot expose exclusive control to an
 application runtime. In fact, important optimizations in storage systems depend
-on managing access by understanding behavior across application boundaries.
+on managing access by understanding behavior across application and process boundaries.
 
 \begin{quote}
   \emph{Challenge}. The design of adaptive storage I/O interfaces that safely
-  provide two-way communication of with application runtimes the nature of
+  provide two-way communication with application runtimes regarding the nature of
   workflows, hardware, data, and access semantics. Highly dynamic interfaces to shared resources
-  present many optimization opporunities, but introduce difficult challenges for
+  present many optimization opportunities, but introduce difficult challenges for
   managing access.
 \end{quote}
+
+These challenges are a direct result of the disruptive nature of
+next-generation storage media that are recognized by the storage industry as
+drivers of new storage system architectures~\cite{samuels:oss16}.
 
 \section{Research directions}
 
@@ -205,35 +211,38 @@ make this permutation space practically impossible to reason about.
 In light of new storage interfaces, we advocate the pursuit of the following
 research directions.
 
+\newpage
 \subsection{Interface design}
 
 Current I/O interfaces are in large part treated as black boxes that offer
 limited control in the form of \emph{magic numbers} or coarse-grain hints. With
 few exceptions such as I/O sequentiality and alignment parameters, existing
 interfaces do not allow applications to express intent or expose low-level system state
-or configurability. In order to realize {\it end-to-end} application I/O optmizations,
+or configurability. In order to realize {\it end-to-end} application I/O optimizations,
 both application runtime and storage system will need to be co-designed such that runtime
-adapation of behavior based on data structure is possible.
+adaptation of behavior is possible.
 
-For instance, HPC applications that use pattern-based data models and want to
-optimize for checkpoint latency should be able to reliqunish control over low-level
-data placement to the storage system, and in turn be able to adapatively provide
-subsets of checkpoint data based on the current state of the storage system.
+For instance, HPC applications that use pattern-based data models should be able
+to relinquish control over low-level data placement to the storage system, and
+in turn be able to adaptively provide subsets of checkpoint data based on the
+current state of the storage system. This push-pull model allows both
+application and storage system to cooperatively adjust behavior.
 
 Historically the primary I/O interfaces have been object, block, and POSIX file
 I/O. However, the availability of high-performance open-source storage systems
 are allowing exploration of new storage interfaces without the fear of vendor
 lock-in.  Recent work has explored the adaptability of existing storage systems
 to support a range of new I/O interfaces, but an open question is how such
-interfaces can efficently and reliability be constructed. Integrate KV-Drive and
-LDFI into discussion.
+interfaces can efficiently and reliability be constructed.
+%TODO Integrate KV-Drive and
+%LDFI into discussion.
 
 \subsection{System architecture}
 
 Both HPC and cloud-based systems are seeing rapid advancements towards
 heterogeneity. For instance, Amazon Web Services offers a large array of node
 and network capabilities including FPGA and GPU co-processors. Moreover, AWS
-offers an HPC service for users to compose their own HPC systems Emerging
+offers an HPC service for users to compose their own HPC systems. Emerging
 storage technologies such as NVMe and persistent memories are offered by cloud
 providers and will be integrated in future HPC systems, but even existing
 storage systems are struggling to exploit their full
@@ -241,10 +250,10 @@ performance~\cite{xu:fast16-nova}. In fact, the increased performance of
 next-generation media and networks suggests that future systems may require a
 CPU per storage device~\cite{samuels:oss16}. And in order to support a dynamic
 range of interfaces, internal sub-systems will need to be generic and re-usable
-to support the diverse of demands of runtime systems.
+to support the diverse demands of runtime systems.
 
 Achieving end-to-end performance optimization will require new techniques for
-verticaly integrating across application, runtime, and storage systems. The
+vertically integrating across application, runtime, and storage systems. The
 architectural challenges of achieving low-latency I/O for persistent memories
 requirements are significant. These media benefit from shared-nothing designs
 that minimize context switches and \emph{cycles}, thus one-size-fits-all code
@@ -259,14 +268,14 @@ deployments. However, technologies for cross-language communication offer
 notoriously poor performance (e.g. JNI) and will introduce unacceptable
 overheads for systems with next-generation memories. New runtime systems that
 rely on advanced JIT technologies are successfully being used to dynamically
-perform end-to-end code path optimization across language boundaries (Graal,
-Truffle, SQLiteJIT).
+perform end-to-end code path optimization across language
+boundaries~\cite{wurt,friedrich:ecoop16}.
 
 \subsection{Operational policies}
 
 The data-intensive nature of both cloud and HPC applications will put extreme
 pressure on shared storage systems. Even in the most constrained cases today,
-efficently sharing systems is a significant challenge. Handling access to a
+efficiently sharing systems is a significant challenge. Handling access to a
 shared storage systems supporting a wide range of dynamic interfaces, code
 paths, and new architectures that favor less shared state will require
 rethinking how resource management is handled.
@@ -286,7 +295,7 @@ data on heterogeneous hardware.
 
 As with the other research directions, operational policies reach beyond just
 HPC. Providing performance guarantees for all resources, not just storage, is
-important for *aaS architectures that are shared among users, so lessons can be
+important for SaaS architectures that are shared among users, so lessons can be
 gleaned from cloud research about isolation and scheduling, such as Mesos and
 Kubernetes. Furthermore, the cloud community has done a good job addressing
 heterogeneity when using these techniques behind user-facing APIs without
